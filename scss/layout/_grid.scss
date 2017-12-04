@@ -1,0 +1,294 @@
+
+
+
+@mixin si-make-grid() {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 0 auto;
+    position: relative;
+    list-style-type: none;
+}
+
+
+@mixin si-make-col-init() {
+    position: relative;
+    width: 100%;
+}
+
+
+@mixin si-make-col($columns, $index) {
+    width: percentage(($index / $columns));
+}
+
+
+@mixin si-make-cols() {
+
+    
+    [class^="#{$si-prefix}col-"] {
+
+        @include si-make-col-init();
+
+        .#{$si-prefix}grid {
+            flex:1 1 auto;
+        }
+    }
+
+    $tmp: null;
+
+    @each $options in $si-layouts-grid
+    {
+
+        $expression: map-get($options, 'expression');
+        $prefix: if( $expression == null, "", "-#{map-get($options, 'expression')}" );
+        $columns: map-get($options, 'columns');
+        $spacing: map-get($options, 'spacing');
+
+     
+        @include si-media($expression) {
+
+            
+            @if ($tmp != $spacing)
+            {
+
+                [class^="#{$si-prefix}col-"] {
+                    
+                    padding: $spacing;
+            
+                    .#{$si-prefix}grid {
+                        margin: -$spacing;
+                    }
+                
+                }
+
+            }
+
+            .#{$si-prefix}col#{$prefix}-auto {
+                flex: 1 0 0px;
+                width: auto;
+            }
+
+            @for $i from 1 through map-get($options, 'columns')
+            {
+
+                .#{$si-prefix}col#{$prefix}-#{$i} {
+                    @include si-make-col($columns, $i);
+                }
+
+            }
+        }
+
+        $tmp: $spacing;
+    }
+}
+
+
+
+
+
+@if $si-layout-grid-enable
+{
+    $tmp: null;
+
+    .#{$si-prefix}container,
+    .#{$si-prefix}container-full {
+        width: 100%;
+        margin-right: auto;
+        margin-left: auto;
+    
+        @each $options in $si-layouts-grid
+        {
+
+            $spacing: map-get($options, 'spacing');
+            $expression: map-get($options, 'expression');
+
+
+            @include si-media($expression) {
+                
+                            
+                @if ($tmp != $spacing)
+                {
+
+                    padding-right: ($spacing * 2);
+                    padding-left: ($spacing * 2);
+                    
+    
+                    .#{$si-prefix}grid {
+                        
+                        margin-right: -$spacing;
+                        margin-left: -$spacing;
+        
+                    }
+
+                }
+    
+            }
+
+
+            $tmp: $spacing;
+        }
+    }
+
+
+    .#{$si-prefix}grid {
+		@include si-make-grid();
+    }
+    
+    @include si-make-cols();
+
+}
+
+@if $si-layout-grid-helpers
+{
+
+    .#{$si-prefix}wrap {
+      flex-wrap: wrap;
+    }
+
+    .#{$si-prefix}no-wrap {
+        flex-wrap: nowrap;
+    }
+
+    .#{$si-prefix}no-wrap [class^="col-"] {
+        flex-shrink: 1;
+    }
+
+    .#{$si-prefix}wrap-reverse {
+        flex-wrap: wrap-reverse;
+    }
+
+    .#{$si-prefix}direction-row {
+        flex-direction: row;
+    }
+
+    .#{$si-prefix}direction-row-reverse {
+        flex-direction: row-reverse;
+    }
+
+    .#{$si-prefix}direction-column {
+        flex-direction: column;
+    }
+
+    .#{$si-prefix}direction-column-reverse {
+        flex-direction: column-reverse;
+    }
+
+    .#{$si-prefix}align-start {
+        align-items: flex-start;
+    }
+
+    .#{$si-prefix}align-end {
+        align-items: flex-end;
+    }
+
+    .#{$si-prefix}align-center {
+        align-items: center;
+    }
+
+    .#{$si-prefix}align-baseline {
+        align-items: baseline;
+    }
+
+    .#{$si-prefix}align-content-start {
+        align-content: flex-start;
+    }
+
+    .#{$si-prefix}align-content-end {
+        align-content: flex-end;
+    }
+
+    .#{$si-prefix}align-content-center {
+        align-content: center;
+    }
+
+    .#{$si-prefix}align-content-space-between {
+        align-content: space-between;
+    }
+
+    .#{$si-prefix}align-content-space-around {
+        align-content: space-around;
+    }
+
+    .#{$si-prefix}align-self-stretch {
+        align-self: stretch;
+    }
+
+    .#{$si-prefix}align-self-start {
+        align-self: flex-start;
+    }
+
+    .#{$si-prefix}align-self-end {
+        align-self: flex-end;
+    }
+
+    .#{$si-prefix}align-self-center {
+        align-self: center;
+    }
+
+    .#{$si-prefix}align-self-baseline {
+        align-self: baseline;
+    }
+
+    .#{$si-prefix}justify-start {
+        justify-content: flex-start;
+    }
+
+    .#{$si-prefix}justify-end {
+        justify-content: flex-end;
+    }
+
+    .#{$si-prefix}justify-center {
+      justify-content: center;
+    }
+
+    .#{$si-prefix}justify-space-between {
+      justify-content: space-between;
+    }
+
+    .#{$si-prefix}justify-space-around {
+      justify-content: space-around;
+    }
+
+    .#{$si-prefix}grid-no-spacing > [class*="col-"] {
+        padding: 0;
+    }
+
+    .#{$si-prefix}grid-no-spacing > [class*="col-"] > .grid {
+        margin: 0;
+    }
+
+    .#{$si-prefix}col-grid {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .#{$si-prefix}col-grid.#{$si-prefix}direction-row {
+        flex-direction: row;
+    }
+
+    .#{$si-prefix}col-no-spacing {
+    padding: 0;
+    }
+
+    .#{$si-prefix}col-no-spacing-x {
+    padding: 15px 0;
+    }
+
+    .#{$si-prefix}col-no-spacing-y {
+    padding: 0 15px;
+    }
+    
+    .flex-img {
+        display: block;
+        flex: 0 0 auto;
+        max-width: 100%;
+        height: auto;
+        width: 100%;
+    }
+
+    .flex-footer {
+        width: 100%;
+        margin-top: auto;
+        margin-bottom: 0;
+    }    
+}

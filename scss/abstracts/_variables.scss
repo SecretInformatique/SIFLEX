@@ -1,0 +1,67 @@
+
+
+/// Prefix
+$si-prefix: null !default;
+
+/// activation des modules
+$si-base-print-enable:true !default;
+$si-layout-grid-enable:true !default;
+$si-layout-grid-helpers:true !default;
+
+///
+/// Expression list that groups media types
+///
+///  @example scss - $media-expressions: ('screen': 'screen');
+///  @example scss - $media-expressions: ('tv': 'handheld and (orientation: landscape)');
+///
+
+$si-abstracts-media-expressions:
+(
+    'xs': '(min-width:30em)',
+    'sm': '(min-width:48em)',
+    'md': '(min-width:62em)',
+    'lg': '(min-width:75em)',
+    'xlg': '(min-width:100em)',
+
+    'all': 'all',
+    'screen': 'screen',
+    'print': 'print',
+    'landscape': '(orientation: landscape)',
+    'portrait': '(orientation: portrait)',
+) !default;
+
+
+
+
+$si-layouts-grid: (
+	(
+		expression: null,
+		columns: 12,
+		spacing: 0.75rem
+	),
+	(
+		expression: 'xs',
+		columns: 12,
+		spacing: 0.75rem
+	),
+	(
+		expression: 'sm',
+		columns: 12,
+		spacing: 1rem
+	),
+	(
+		expression: 'md',
+		columns: 12,
+		spacing: 1rem
+	),
+	(
+		expression: 'lg',
+		columns: 12,
+		spacing: 1rem
+	),
+	(
+		expression: 'xlg',
+		columns: 12,
+		spacing: 1.5rem
+	)
+) !default;

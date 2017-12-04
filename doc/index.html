@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Démo SiFlex</title>
+    <link rel="stylesheet" href="./../css/siflex.min.css">
+    <style>
+
+        .container-full > .grid,
+        .container > .grid,
+        body > .grid {
+            margin-bottom: 2rem;
+        }
+        .grid {
+            min-height: 150px;
+            background-color: #003e50;
+        }
+        .grid [class^="col-"] {
+            box-shadow: inset 0 0 0 1px #9ce9ff;
+        }
+        .grid .content {
+            background-color: #83e3ff;
+        }
+    </style>
+</head>
+<body>
+
+<div class="grid">
+    <div class="col-4">
+        <p>col-4</p>
+    </div>
+    <div class="col-4">
+        <p>col-4</p>
+    </div>
+    <div class="col-4">
+        <p>col-4</p>
+    </div>
+    <div class="col-xs-4">
+        <p>col-xs-4</p>
+    </div>
+    <div class="col-xs-8">
+        <p>col-xs-8</p>
+    </div>
+    <div class="col-sm-6">
+        <p>col-sm-6</p>
+    </div>
+    <div class="col-sm-6">
+        <p>col-sm-6</p>
+    </div>
+    <div class="col-md-8">
+        <p>col-md-8</p>
+    </div>
+    <div class="col-md-4">
+        <p>col-md-4</p>
+    </div>
+    <div class="col-lg-4">
+        <p>col-lg-4</p>
+    </div>
+    <div class="col-lg-8">
+        <p>col-lg-8</p>
+    </div>
+    <div class="col-xlg-8">
+        <p>col-xlg-8</p>
+    </div>
+    <div class="col-xlg-4">
+        <p>col-xlg-4</p>
+    </div>
+</div>
+
+<div class="grid">
+    <div class="col-sm-6">
+        col-sm-6
+    </div>
+    <div class="col-sm-6">
+        <div class="grid">
+            <div class="col-6">
+                col-6
+            </div>
+            <div class="col-6">
+                col-6
+            </div>
+            <div class="col-6">
+                col-6
+            </div>
+            <div class="col-6">
+                col-6
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="grid">
+    <div class="col-sm-6">
+        col-sm-6
+    </div>
+    <div class="col-sm-6">
+        <div class="grid grid-no-spacing">
+            <div class="col-6">
+                col-6
+            </div>
+            <div class="col-6">
+                col-6
+            </div>
+            <div class="col-6">
+                col-6
+            </div>
+            <div class="col-6">
+                col-6
+            </div>
+        </div>
+    </div>
+</div>
+<div class="grid">
+    <div class="col-sm-6">
+        col-sm-6
+    </div>
+    <div class="col-sm-6">
+        <div class="grid">
+            <div class="col-6 col-no-spacing">
+                col-6
+            </div>
+            <div class="col-6">
+                col-6
+            </div>
+            <div class="col-6 col-no-spacing-x">
+                col-6
+            </div>
+            <div class="col-6 col-no-spacing-y">
+                col-6
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
